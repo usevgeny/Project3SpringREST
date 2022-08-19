@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "6eb9b711-75c7-478d-bbcc-1235a47e0793",
+		"name": "Project3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18884079"
+	},
+	"item": [
+		{
+			"name": "GetAllSensors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sensors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sensors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllMeasurements",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/measurements",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"measurements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllRainyDaysNumber",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/measurements/rainyDaysConut",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"measurements",
+						"rainyDaysConut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddMeasurement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"value\": 20,\n    \"raining\": \"true\",\n    \"emitter\": {\n                \"name\":\"sensor\"\n                }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/measurements/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"measurements",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterNewSensor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"sensor\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/sensors/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sensors",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
