@@ -5,4 +5,3 @@
 5. Для тестирования клиента и построения графиков соответвуеющий проект("project3restClient") нужно запустить в IDE 
 6. При необходимости запуска нескольких инстансов SpringREST пприложения использовать docker-compose-scalable.yml (docker-compose -f docker-compose-scalable.yml up --build --scale springrest=4)
 
-P.S. Возникли некоторые сложности с десериализацией MeasureResponse, поэтому на данном этапе сбор и десериализация данных реализована через ObjectMapper.
