@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import project3restClient.models.MeasurementDTO;
-import project3restClient.models.MeasurementsResponse;
+import project3restClient.models.MeasurementResponse;
 import project3restClient.models.SensorDTO;
 
 public class MeasurementsGetter {
@@ -22,8 +22,9 @@ public class MeasurementsGetter {
     private static final RestTemplate restTemplate = new RestTemplate();
 
     public static void main(String[] args) throws JsonMappingException, JsonProcessingException {
-        // MeasurementsResponse response = getObjectsViaPreparedResponseClass();
-        System.out.println(getMeasurementsDto());
+        MeasurementResponse response = getObjectsViaPreparedResponseClass();
+       // System.out.println(getMeasurementsDto());
+        System.out.println(response);
     }
 
     public static List<MeasurementDTO> getMeasurementsDto() {
@@ -38,10 +39,10 @@ public class MeasurementsGetter {
         return measurementsDTO;
     }
 
-    public static MeasurementsResponse getObjectsViaPreparedResponseClass() {
+    public static MeasurementResponse getObjectsViaPreparedResponseClass() {
         LOGGER.info("Sending Get Request");
         // List<MeasurementDTO> response = restTemplate.getForObject(url, List.class);
-        MeasurementsResponse response = restTemplate.getForObject(url, MeasurementsResponse.class);
+        MeasurementResponse response = restTemplate.getForObject(url, MeasurementResponse.class);
         System.out.println(response);
         return response;
     }

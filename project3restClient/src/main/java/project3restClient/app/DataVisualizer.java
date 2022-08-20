@@ -15,7 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import project3restClient.models.MeasurementDTO;
-import project3restClient.models.MeasurementsResponse;
+import project3restClient.models.MeasurementResponse;
 
 public class DataVisualizer {
 
@@ -31,16 +31,16 @@ public class DataVisualizer {
         final String url = "http://localhost:8080/api/measurements";
         List<Float> temps = new ArrayList<>();
 
-        List<MeasurementDTO> jsonResponse = MeasurementsGetter.getMeasurementsDto();
+        MeasurementResponse jsonResponse = MeasurementsGetter.getObjectsViaPreparedResponseClass();
 
         if (jsonResponse == null)
             return Collections.emptyList();
 
         //getting values for collected temperatures
-        for (MeasurementDTO measurement : jsonResponse) {
+        for (MeasurementDTO measurement : jsonResponse.getMeasurementsDTO()) {
             temps.add(measurement.getValue());
         }
-        return jsonResponse.stream().map(MeasurementDTO::getValue).collect(Collectors.toList());
+        return jsonResponse.getMeasurementsDTO().stream().map(MeasurementDTO::getValue).collect(Collectors.toList());
     }
 
 
