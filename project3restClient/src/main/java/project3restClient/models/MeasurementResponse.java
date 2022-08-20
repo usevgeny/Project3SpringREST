@@ -1,18 +1,16 @@
-package io.evgeny.project3restConsumer.utils;
+package project3restClient.models;
 
 import java.util.List;
 
-import io.evgeny.project3restConsumer.DTO.MeasurementDTO;
-
 public class MeasurementResponse {
-    
+
     private List<MeasurementDTO> measurementsDTO;
 
     public MeasurementResponse(List<MeasurementDTO> measurementsDTO) {
         super();
         this.measurementsDTO = measurementsDTO;
     }
-    
+
     public MeasurementResponse() {
     }
 
@@ -23,6 +21,10 @@ public class MeasurementResponse {
     public void setMeasurementsDTO(List<MeasurementDTO> measurementsDTO) {
         this.measurementsDTO = measurementsDTO;
     }
-    
+
+    @Override
+    public String toString() {
+        return "MeasurementResponse [measurementsDTO=" + measurementsDTO + "]";
+    }
 
 }

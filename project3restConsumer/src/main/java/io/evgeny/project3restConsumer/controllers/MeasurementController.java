@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.evgeny.project3restConsumer.DTO.MeasurementDTO;
 import io.evgeny.project3restConsumer.models.Measurement;
-import io.evgeny.project3restConsumer.models.Sensor;
 import io.evgeny.project3restConsumer.services.MeasurementService;
 import io.evgeny.project3restConsumer.services.SensorService;
 import io.evgeny.project3restConsumer.utils.MeasurementErrorResponse;
 import io.evgeny.project3restConsumer.utils.MeasurementNotCreatedException;
 import io.evgeny.project3restConsumer.utils.MeasurementNotFoundException;
+import io.evgeny.project3restConsumer.utils.MeasurementResponse;
 
 @RestController
 @RequestMapping("/api/measurements")
@@ -38,16 +38,17 @@ public class MeasurementController {
     private final SensorService sensorService;
 
     @Autowired
-    public MeasurementController(ModelMapper modelMapper, MeasurementService measurementService, SensorService sensorService) {
+    public MeasurementController(ModelMapper modelMapper, MeasurementService measurementService,
+            SensorService sensorService) {
         this.modelMapper = modelMapper;
         this.measurementService = measurementService;
         this.sensorService = sensorService;
     }
 
     @GetMapping()
-    public List<MeasurementDTO> getAllMeasurements() {
-        return measurementService.findAllMeasurements().stream().map(this::convertToMeasurementDTO)
-                .collect(Collectors.toList());
+    public MeasurementResponse getAllMeasurements() {
+        return new MeasurementResponse(measurementService.findAllMeasurements()
+                .stream().map(this::convertToMeasurementDTO).collect(Collectors.toList()));
     }
 
     @GetMapping("/rainyDaysConut")
@@ -65,8 +66,7 @@ public class MeasurementController {
         Measurement measurement = convertToMeasurement(measurementDTO);
         measurement.setEmitter(sensorService.getSensorByName(measurementDTO.getEmitter().getName()));
         System.out.println(measurement.getEmitter().getSensorId());
-        
-        
+
         if (bindingResult.hasErrors()) {
             StringBuilder errorMessage = new StringBuilder();
             List<FieldError> errors = bindingResult.getFieldErrors();
@@ -80,8 +80,6 @@ public class MeasurementController {
         measurementService.saveMeasurement(measurement);
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
-
 
     @ExceptionHandler
     private ResponseEntity<MeasurementErrorResponse> handleException(MeasurementNotFoundException e) {
